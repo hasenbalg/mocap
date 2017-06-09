@@ -8,7 +8,7 @@ var renderer = new THREE.WebGLRenderer();
 var camera = new THREE.PerspectiveCamera(75,ratio , .1, 1000 );//fov, aspect, near, far
 var mesh = null;
 var geometry = new THREE.SphereGeometry(10, 64, 64);
-material = new THREE.MeshBasicMaterial({ side: THREE.BackSide});
+var material = new THREE.MeshBasicMaterial({ side: THREE.BackSide});
 var mesh = new THREE.Mesh(geometry, material);
 mesh.scale.x = -1;
 scene.add(mesh);
