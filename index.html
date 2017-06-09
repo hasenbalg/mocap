@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    *{
+      padding: 0;
+      margin:0;
+      height:100%;
+    }
+      #container{
+        height: 100%;
+        width: 100%;
+        background-color: green;
+      }
+      #url_input{
+        width:50em;
+        height:2em;
+        position:absolute;
+        left:-49.5em;
+      }
+      #url_input:hover{
+        left:0em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" >
+      <input type="text" name="" value="" placeholder="URL to img" id="url_input">
+    </div>
+  </body>
+  <script src="js/three.js" charset="utf-8"></script>
+  <script src="js/projection.js" charset="utf-8"></script>
+  <script src="js/leap-0.6.3.min.js"></script>
+  <script src="js/leap_control_script.js"></script>
+
+  <script type="text/javascript">
+    var url_input = document.getElementById('url_input').onchange = function(){
+      // console.log(this.value);
+      tex_loader.load(this.value, function(texture) {
+        mesh.material = new THREE.MeshBasicMaterial({map: texture});
+      });
+    }
+  </script>
+</html>
