@@ -19,7 +19,7 @@ scene.add(mesh);
 //   renderer.render(scene);
 // });
 var tex_loader = new THREE.TextureLoader();
-tex_loader.load('gear-360_slide360_02.jpg', function(texture) {
+tex_loader.load('360_imgs/gear-360_slide360_02.jpg', function(texture) {
 
   mesh.material = new THREE.MeshBasicMaterial({map: texture});
 

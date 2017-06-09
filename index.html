@@ -50,5 +50,32 @@
         mesh.material = new THREE.MeshBasicMaterial({map: texture});
       });
     }
+
+
+var img_list = [
+  '360_imgs/06Cover2-FrontlineFamine-8.jpg',
+  '360_imgs/2016-12-06.jpg',
+  '360_imgs/360-degree-view.jpg',
+  '360_imgs/Bridgestone-FishEye-Mettle-SkyBox-Studio-car-interior.jpg',
+  '360_imgs/Fantasyland-4096x2048.jpg',
+  '360_imgs/Hellbrunn_banqueting_hall_360_panoramic_view.jpg',
+  '360_imgs/R0010056.jpg',
+  '360_imgs/gear-360_slide360_02.jpg',
+  '360_imgs/hero-360.jpg',
+  '360_imgs/passenger_flying.jpg'
+], img_index = 0;
+    window.onkeydown = function(e){
+      console.log(e);
+      if(e.key =='ArrowRight'){
+        tex_loader.load(img_list[img_index++], function(texture) {
+          mesh.material = new THREE.MeshBasicMaterial({map: texture});
+        });
+      }
+      if(e.key =='ArrowLeft'){
+        tex_loader.load(img_list[img_index--], function(texture) {
+          mesh.material = new THREE.MeshBasicMaterial({map: texture});
+        });
+      }
+    }
   </script>
 </html>
