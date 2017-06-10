@@ -1,8 +1,30 @@
+/*
+Cubemap instead of sphere for image mapping
+[Brightness with pinch after Hand rotated around -90°/+90° for HDR images]
+Implement as Google Chrome Plugin
+Add Context Menu for Google Chrome
+Add Settings of Plugin:
+-FOV
+-Damping speed
+-1:1 / Fullscreen View
+*/
+
+
 
 var start_time =0;
 var zero_point;
 var previousFrame = null;
 var damping = 5000;
+
+function vectorToString(vector, digits) {
+  if (typeof digits === "undefined") {
+    digits = 1;
+  }
+  return "(" + vector[0].toFixed(digits) + ", "
+             + vector[1].toFixed(digits) + ", "
+             + vector[2].toFixed(digits) + ")";
+}
+
 Leap.loop({enableGestures: true}, function(frame) {
 
   if (frame.hands.length > 0) {
@@ -10,6 +32,15 @@ Leap.loop({enableGestures: true}, function(frame) {
       if(!zero_point) {
         zero_point = frame.hands[0].palmPosition;
       }
+
+      // I tried to output the rotation of the hand for more gestures.
+      // doing so in the bus doesn't work. At all.
+      var rotationAxis = frame.rotationAxis(previousFrame, 2);
+      var rotationAngle = frame.rotationAngle(previousFrame);
+      handString += "Rotation axis: " + vectorToString(rotationAxis) + "<br />";
+      handString += "Rotation angle: " + rotationAngle.toFixed(2) + " radians<br />";
+      document.getElementById("debug") = handString;
+
       for (var i = 0; i < frame.hands.length; i++) {
         var hand = frame.hands[i];
         if (previousFrame && previousFrame.valid) {
