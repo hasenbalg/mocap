@@ -1,4 +1,4 @@
-var x_speed = 0.0005, y_speed = 0.0005;
+var x_speed = 0.0005, y_speed = 0.0005, fov = 75;
 
 var container = document.getElementById('container');
 var ratio = container.clientWidth/ container.clientHeight;
@@ -39,6 +39,8 @@ camera.position.z = 0;
 var loop = function(){
   requestAnimationFrame(loop);
 
+  camera.fov = fov;
+  camera.updateProjectionMatrix();
   camera.rotation.x += x_speed;
   mesh.rotation.y += y_speed;
   renderer.render(scene, camera);
