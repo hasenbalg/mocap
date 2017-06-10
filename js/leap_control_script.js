@@ -42,12 +42,9 @@ Leap.loop({enableGestures: true}, function(frame) {
             y_speed = (Math.abs(translation.x) > 10 ? translation.x /damping: 0);
           } else {
             stop_rotation();
-          }
-
-          if(hand.roll() < -.9 && hand.roll() > -1.5) {
+            // TODO exposure = map_range(hand.yaw(), -Math.PI/2, Math.PI/2, .25, 2)
             fov = map_range(hand.palmPosition[2] - zero_point[2], 100, -30, 90, 50);
-            //fov = map_range(hand.pinchStrength, 0, 1, 75, 90);
-            stop_rotation();
+            console.log(exposure);
           }
         }
       }
