@@ -1,14 +1,18 @@
 
+    //
+    // renderer.setSize(container.clientWidth, container.clientHeight);
+    console.log(img_to_substitute.width, img_to_substitute.height);
+    var canvas = container.getElementsByTagName('canvas')[0];
+    canvas.width = img_to_substitute.width;
+    canvas.height = img_to_substitute.height;
+    // canvas.style.width = img_to_substitute.width + 'px';
+    // canvas.style.height = img_to_substitute.height + 'px';
+    container.removeChild(img_to_substitute);
+    renderer.setSize(canvas.width, canvas.height);
+
+    camera.aspect = canvas.width/canvas.height;
 
 
-
-  console.log(url);
-  var imgs = document.getElementsByTagName('img'), img_to_substitute;
-  for(var i = 0; i < imgs.length; i++) {
-
-    // console.log(imgs[i].src);
-    if(imgs[i].src == url){
-      img_to_substitute = imgs[i];
-    }
-  }
-    img_to_substitute.style.border = '5px solid red';
+    tex_loader.load(url, function(texture) {
+      mesh.material = new THREE.MeshBasicMaterial({map: texture});
+    });
