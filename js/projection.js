@@ -1,4 +1,4 @@
-var x_speed = 0.0005, y_speed = 0.0005, fov = 75, amount = 1;
+var x_speed = 0.0005, y_speed = 0.0005, fov = 75, amount = 1, exposure = 1;
 
 var container = document.getElementById('container');
 var ratio = container.clientWidth/ container.clientHeight;
