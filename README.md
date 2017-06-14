@@ -10,10 +10,10 @@ Leap Motion gesture steering for equirectangular images
 - [ ] _control HDR image brightness with pinch_
 
 ## Implement as Google Chrome Plugin
-[X] Just get it from the Extension-Store or install this package
+- [X] Just get it from the Extension-Store or install this package
 
 ## Add Context Menu for Google Chrome Plugin
-[ ] If there is a image, you can open your context menu and start GSEI
+- [ ] If there is a image, you can open your context menu and start GSEI
 
 ## Add Settings for Google Chrome Plugin
 - [ ] FOV
