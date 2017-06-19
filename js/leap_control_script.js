@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // Values for major control
-=======
->>>>>>> 6a3e09860779577a25654878f03ddd147f11ec3d
 var start_time = 0;
 var zero_point;
 var previousFrame = null;
@@ -9,21 +6,16 @@ var damping = 5000;
 
 // Values to set the zoom level
 var fov = 75;
-<<<<<<< HEAD
-var FOV_MAX = 125;
+var FOV_MAX = fov;
 var FOV_MIN = 25;
-var HAND_IN = 50;
-var HAND_OUT = -50;
+var HAND_IN = 150;
+var HAND_OUT = 0;
 var zero_zoom;
 var reset_pivot;
 
 // Values for setting the image exposure
 var exposure = 1;
 
-=======
-var exposure = 1;
-
->>>>>>> 6a3e09860779577a25654878f03ddd147f11ec3d
 function camera_rotate(handPos) {
   var translation = {
     x: handPos[0] - zero_point[0],
@@ -33,15 +25,14 @@ function camera_rotate(handPos) {
   y_speed = (Math.abs(translation.x) > 10 ? translation.x / damping : 0);
 }
 
-<<<<<<< HEAD
 function camera_zoom(handPos, zero_zoom) {
   stop_rotation();
-  fov = map_range(handPos[2] - zero_zoom[2], HAND_OUT, HAND_IN, 125, 25);
-=======
+  // fov = map_range(handPos - zero_zoom, HAND_OUT, HAND_IN, FOV_MAX, FOV_MIN);
+}
+
 function camera_zoom(handPos) {
-  stop_rotation();
-  fov = map_range(handPos[2] - zero_point[2], -50, 50, 25, 90);
->>>>>>> 6a3e09860779577a25654878f03ddd147f11ec3d
+  fov = map_range(handPos - zero_point[2], HAND_OUT, HAND_IN, FOV_MIN, FOV_MAX);
+  // console.log(handPos - zero_point[2]);
 }
 
 function image_exposure(handPos) {
@@ -65,31 +56,26 @@ Leap.loop({enableGestures: true}, function(frame) {
       for (var i = 0; i < frame.hands.length; i++) {
         var hand = frame.hands[i];
         if (previousFrame && previousFrame.valid) {
-<<<<<<< HEAD
 
-          console.log(hand.rotationAngle(previousFrame));
+          // console.log(fov);
 
           if (hand.grabStrength < .5) {
             camera_rotate(hand.palmPosition);
+            camera_zoom(hand.palmPosition[2])
           }
-          if (hand.grabStrength > .5) {
-            if(reset_pivot) {
-              zero_zoom = zero_point;
-              reset_pivot = false;
-            }
-            camera_zoom(hand.palmPosition, zero_zoom);
-          }
-          else {
-            reset_pivot = true;
-          }
+          // if (hand.grabStrength > .5) {
+          //   if(reset_pivot) {
+          //     zero_zoom = zero_point[2];
+          //     reset_pivot = false;
+          //   }
+          //   var lerpedPalmPos = lerp(hand.palmPosition[2], previousFrame.hands[0].palmPosition[2], .20);
+          //   console.log(lerpedPalmPos);
+          //   camera_zoom(lerpedPalmPos, zero_zoom);
+          // }
+          // else {
+          //   reset_pivot = true;
+          // }
 
-=======
-          if (hand.grabStrength < .5) {
-            camera_rotate(hand.palmPosition);
-          } else if (hand.grabStrength > .5) {
-            camera_zoom(hand.palmPosition);
-          }
->>>>>>> 6a3e09860779577a25654878f03ddd147f11ec3d
           if (hand.pinchStrength > 0.2) {
             image_exposure(hand.palmPosition);
           }
@@ -119,4 +105,9 @@ function map_range(value, low1, high1, low2, high2) {
 function stop_rotation() {
   x_speed = 0;
   y_speed = 0;
+}
+
+function lerp(start, end, percent){
+  //https://keithmaggio.wordpress.com/2011/02/15/math-magician-lerp-slerp-and-nlerp/
+     return (start + percent*(end - start));
 }
