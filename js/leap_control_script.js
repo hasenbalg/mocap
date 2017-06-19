@@ -1,8 +1,19 @@
+// Values for major control
 var start_time = 0;
 var zero_point;
 var previousFrame = null;
 var damping = 5000;
+
+// Values to set the zoom level
 var fov = 75;
+var FOV_MAX = 125;
+var FOV_MIN = 25;
+var HAND_IN = 50;
+var HAND_OUT = -50;
+var zero_zoom;
+var reset_pivot;
+
+// Values for setting the image exposure
 var exposure = 1;
 
 function camera_rotate(handPos) {
@@ -14,9 +25,9 @@ function camera_rotate(handPos) {
   y_speed = (Math.abs(translation.x) > 10 ? translation.x / damping : 0);
 }
 
-function camera_zoom(handPos) {
+function camera_zoom(handPos, zero_zoom) {
   stop_rotation();
-  fov = map_range(handPos[2] - zero_point[2], -50, 50, 25, 90);
+  fov = map_range(handPos[2] - zero_zoom[2], HAND_OUT, HAND_IN, 125, 25);
 }
 
 function image_exposure(handPos) {
@@ -40,11 +51,23 @@ Leap.loop({enableGestures: true}, function(frame) {
       for (var i = 0; i < frame.hands.length; i++) {
         var hand = frame.hands[i];
         if (previousFrame && previousFrame.valid) {
+
+          console.log(hand.rotationAngle(previousFrame));
+
           if (hand.grabStrength < .5) {
             camera_rotate(hand.palmPosition);
-          } else if (hand.grabStrength > .5) {
-            camera_zoom(hand.palmPosition);
           }
+          if (hand.grabStrength > .5) {
+            if(reset_pivot) {
+              zero_zoom = zero_point;
+              reset_pivot = false;
+            }
+            camera_zoom(hand.palmPosition, zero_zoom);
+          }
+          else {
+            reset_pivot = true;
+          }
+
           if (hand.pinchStrength > 0.2) {
             image_exposure(hand.palmPosition);
           }
