@@ -14,7 +14,7 @@
       min-width:800px;
       min-height:600px;
     }
-      #container{
+      #360_container{
         height: 100%;
         width: 100%;
         background-color: black;
@@ -37,7 +37,7 @@
     </style>
   </head>
   <body>
-    <div id="container" >
+    <div id="360_container" >
       <input type="text" name="" value="" placeholder="URL to img" id="url_input">
       <p id="debug"></p>
     </div>
@@ -67,7 +67,7 @@ var img_list = [
   '360_imgs/gear-360_slide360_02.jpg',
   '360_imgs/hero-360.jpg',
   '360_imgs/passenger_flying.jpg'
-], img_index = 0;
+], img_index = 0, url = img_list[img_index];
     window.onkeydown = function(e){
       console.log(e);
       if(e.key =='ArrowRight'){
