@@ -1,25 +1,29 @@
 {// Required
- "manifest_version": 2,
- "name": "Mocap",
- "version": "0.0",
+  "manifest_version": 2,
+  "name": "Mocap2",
+  "version": "0.0",
 
- // Recommended
- "description": "Watch 360 images with Leap Motion",
- "icons": {"16": "icon16.png",
-           "48": "icon48.png",
-          "128": "icon128.png" },
+  // Recommended
+  "description": "converts imgs to canvas elemnts",
+  "icons": {
+    "42": "icons/res/mipmap-mdpi/icon.png",
+    "72": "icons/res/mipmap-hdpi/icon.png",
+    "96": "icons/res/mipmap-xhdpi/icon.png",
+    "144": "icons/res/mipmap-xxhdpi/icon.png",
+    "192": "icons/res/mipmap-xxhdpi/icon.png"
+   },
 
-          "browser_action": {
-            "default_title": "",
-            "default_popup": "index.html"
-          },
+    "browser_action": {
+      "default_title": "",
+      "default_popup": "index.html"
+    },
 
- // Optional
- "author": "Finn Jensen, Frank Hasenbalg",
- "permissions": [
-          "contextMenus", "activeTab"
-        ],
+    // Optional
+    "author": "Frank Hasenbalg",
+    "permissions": [
+      "contextMenus", "activeTab", "<all_urls>"
+    ],
     "background": {
       "scripts": ["js/background_script.js"]
     }
-}
+  }

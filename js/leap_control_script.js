@@ -31,8 +31,8 @@ function camera_zoom(handPos, zero_zoom) {
 }
 
 function camera_zoom(handPos) {
-  fov = map_range(handPos - zero_point[2], HAND_OUT, HAND_IN, FOV_MIN, FOV_MAX);
-  // console.log(handPos - zero_point[2]);
+  //fov = map_range(handPos - zero_point[2], HAND_OUT, HAND_IN, FOV_MIN, FOV_MAX);
+  fov = 75;
 }
 
 function image_exposure(handPos) {

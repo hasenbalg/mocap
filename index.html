@@ -1,86 +1,10 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-    *{
-      padding: 0;
-      margin:0;
-      height:100%;
-    }
-    body{
-      min-width:800px;
-      min-height:600px;
-    }
-      #360_container{
-        height: 100%;
-        width: 100%;
-        background-color: black;
-      }
-      #url_input{
-        width:50em;
-        height:2em;
-        position:absolute;
-        left:-49.5em;
-      }
-      #url_input:hover{
-        left:0em;
-      }
-
-      #debug{
-
-        position:absolute;
-        bottom:-5em;
-      }
-
-    </style>
+    <title>huhu</title>
   </head>
   <body>
-    <div id="360_container" >
-      <input type="text" name="" value="" placeholder="URL to img" id="url_input">
-      <p id="debug"></p>
-    </div>
+    <p>huhu</p>
   </body>
-  <script src="js/three.js" charset="utf-8"></script>
-  <script src="js/projection.js" charset="utf-8"></script>
-  <script src="js/leap-0.6.3.min.js"></script>
-  <script src="js/leap_control_script.js"></script>
-
-  <script type="text/javascript">
-    var url_input = document.getElementById('url_input').onchange = function(){
-      // console.log(this.value);
-      tex_loader.load(this.value, function(texture) {
-        mesh.material = new THREE.MeshBasicMaterial({map: texture});
-      });
-    }
-
-
-var img_list = [
-  '360_imgs/06Cover2-FrontlineFamine-8.jpg',
-  '360_imgs/2016-12-06.jpg',
-  '360_imgs/360-degree-view.jpg',
-  '360_imgs/Bridgestone-FishEye-Mettle-SkyBox-Studio-car-interior.jpg',
-  '360_imgs/Fantasyland-4096x2048.jpg',
-  '360_imgs/Hellbrunn_banqueting_hall_360_panoramic_view.jpg',
-  '360_imgs/R0010056.jpg',
-  '360_imgs/gear-360_slide360_02.jpg',
-  '360_imgs/hero-360.jpg',
-  '360_imgs/passenger_flying.jpg'
-], img_index = 0, url = img_list[img_index];
-    window.onkeydown = function(e){
-      console.log(e);
-      if(e.key =='ArrowRight'){
-        tex_loader.load(img_list[img_index++], function(texture) {
-          mesh.material = new THREE.MeshBasicMaterial({map: texture});
-        });
-      }
-      if(e.key =='ArrowLeft'){
-        tex_loader.load(img_list[img_index--], function(texture) {
-          mesh.material = new THREE.MeshBasicMaterial({map: texture});
-        });
-      }
-    }
-  </script>
 </html>
