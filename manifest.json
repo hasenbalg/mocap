@@ -21,7 +21,7 @@
     // Optional
     "author": "Frank Hasenbalg",
     "permissions": [
-      "contextMenus", "activeTab", "<all_urls>"
+      "contextMenus", "activeTab", "<all_urls>", "tabs", "http://*/*", "https://*/*", "storage"
     ],
     "background": {
       "scripts": ["js/background_script.js"]

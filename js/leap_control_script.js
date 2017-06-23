@@ -12,6 +12,7 @@ var HAND_IN = 150;
 var HAND_OUT = 0;
 var zero_zoom;
 var reset_pivot;
+var zoom_enabled;
 
 // Values for setting the image exposure
 var exposure = 1;
@@ -27,12 +28,12 @@ function camera_rotate(handPos) {
 
 function camera_zoom(handPos, zero_zoom) {
   stop_rotation();
-  // fov = map_range(handPos - zero_zoom, HAND_OUT, HAND_IN, FOV_MAX, FOV_MIN);
+  fov = map_range(handPos[2] - zero_zoom, HAND_OUT, HAND_IN, FOV_MAX, FOV_MIN);
 }
 
 function camera_zoom(handPos) {
-  //fov = map_range(handPos - zero_point[2], HAND_OUT, HAND_IN, FOV_MIN, FOV_MAX);
-  fov = 75;
+  //fov = 75;
+  fov = map_range(handPos[2] - zero_point[2], HAND_OUT, HAND_IN, FOV_MIN, FOV_MAX);
 }
 
 function image_exposure(handPos) {
@@ -61,7 +62,9 @@ Leap.loop({enableGestures: true}, function(frame) {
 
           if (hand.grabStrength < .5) {
             camera_rotate(hand.palmPosition);
-            camera_zoom(hand.palmPosition[2])
+            if(zoom_enabled) {
+              camera_zoom(hand.palmPosition)
+            }
           }
           // if (hand.grabStrength > .5) {
           //   if(reset_pivot) {

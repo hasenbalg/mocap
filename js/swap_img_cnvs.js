@@ -1,9 +1,25 @@
-var canvas = document.createElement('canvas');
+console.log(zoom_enabled);
+
+var canvas;
+var body = document.getElementsByTagName('body')[0];
+
+if (document.getElementsByTagName('canvas').length > 0) {
+   canvas = document.getElementsByTagName('canvas')[0];
+} else {
+  canvas = document.createElement('canvas');
+  body.appendChild(canvas);
+}
 // canvas.width = 300; canvas.height = 150;
 
-var x_speed = 0.0005, y_speed = 0.0005, fov = 75, amount = 1, exposure = 1;
+var x_speed = 0.0005,
+  y_speed = 0.0005,
+  fov = 75,
+  amount = 1,
+  exposure = 1;
 var scene = new THREE.Scene();
-var renderer = new THREE.WebGLRenderer({ canvas: canvas });
+var renderer = new THREE.WebGLRenderer({
+  canvas: canvas
+});
 
 var geometry = new THREE.SphereGeometry(10, 32, 32);
 var material = new THREE.MeshBasicMaterial();
@@ -11,29 +27,31 @@ var mesh = new THREE.Mesh(geometry, material);
 mesh.scale.x = -1;
 scene.add(mesh);
 var tex_loader = new THREE.TextureLoader();
+var zoom_enabled;
 
-
-function draw_img(data_url){
-  tex_loader.load(data_url , function(texture) {
-    mesh.material = new THREE.MeshBasicMaterial({map: texture});
+function draw_img(data_url) {
+  tex_loader.load(data_url, function(texture) {
+    mesh.material = new THREE.MeshBasicMaterial({
+      map: texture
+    });
     loop();
   });
 }
 
 function find_img_by_url(url) {
   var all_imgs = document.getElementsByTagName('img');
-  for(var i = 0; i < all_imgs.length ; i++) {
-    if(all_imgs[i].src == url){
+  for (var i = 0; i < all_imgs.length; i++) {
+    if (all_imgs[i].src == url) {
       return all_imgs[i];
     }
   }
 }
 
-function loop(){
+function loop() {
   requestAnimationFrame(loop);
 
-  // camera.fov = fov;
-  // camera.updateProjectionMatrix();
+  camera.fov = fov;
+  camera.updateProjectionMatrix();
   camera.rotation.x += x_speed;
   mesh.rotation.y += y_speed;
   renderer.render(scene, camera);
@@ -55,11 +73,11 @@ function toDataURL(url, callback) {
 }
 
 
-if(url.includes('data:image')){
+if (url.includes('data:image')) {
   draw_img(url);
-}else{
+} else {
   toDataURL(url, function(dataUrl) {
-    console.log(dataUrl);
+    //console.log(dataUrl);
     draw_img(dataUrl);
   });
 }
@@ -69,8 +87,8 @@ var img2replace = find_img_by_url(url);
 canvas.width = img2replace.width;
 canvas.height = img2replace.height;
 
-var ratio  = canvas.width/ canvas.height;
-var camera = new THREE.PerspectiveCamera(fov,ratio , .1, 1000 );//fov, aspect, near, far
+var ratio = canvas.width / canvas.height;
+var camera = new THREE.PerspectiveCamera(fov, ratio, .1, 1000); //fov, aspect, near, far
 
 
 
