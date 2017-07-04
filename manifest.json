@@ -1,16 +1,16 @@
 {// Required
   "manifest_version": 2,
-  "name": "Mocap2",
+  "name": "LeapMotion 360 Viewer",
   "version": "0.0",
 
   // Recommended
-  "description": "converts imgs to canvas elemnts",
+  "description": "View equirectangular images with your Leap Motion",
   "icons": {
     "42": "icons/res/mipmap-mdpi/icon.png",
     "72": "icons/res/mipmap-hdpi/icon.png",
     "96": "icons/res/mipmap-xhdpi/icon.png",
     "144": "icons/res/mipmap-xxhdpi/icon.png",
-    "192": "icons/res/mipmap-xxhdpi/icon.png"
+    "192": "icons/res/mipmap-xxxhdpi/icon.png"
    },
 
     "browser_action": {
@@ -19,7 +19,7 @@
     },
 
     // Optional
-    "author": "Frank Hasenbalg",
+    "author": "Frank Hasenbalg, Finn Jensen",
     "permissions": [
       "contextMenus", "activeTab", "<all_urls>", "tabs", "http://*/*", "https://*/*", "storage"
     ],

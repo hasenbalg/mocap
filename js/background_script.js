@@ -1,6 +1,6 @@
 var current_tab, current_info;
 chrome.contextMenus.create({
-  title: "chng img 2 cnvs",
+  title: "Start LeapMotion 360 Viewer",
   contexts:["image"],
   onclick: function(info, tab) {
     current_tab = tab;
